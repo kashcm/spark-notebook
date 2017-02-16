@@ -1,6 +1,6 @@
 FROM debian:latest
 
-MAINTAINER Kash <kasyap.cm@us.ibm.com>
+MAINTAINER Kash <kasyap.cm@gmail.com>
 
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list && \
     echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list && \
