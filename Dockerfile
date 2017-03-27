@@ -35,9 +35,7 @@ WORKDIR /root/.local/share/jupyter/kernels
 RUN mkdir pyspark
 ADD pyspark ./pyspark
 
-RUN mkdir /usr/work
-WORKDIR /usr/work
-
+WORKDIR /work
 
 WORKDIR /spark
 ADD startup.sh ./
