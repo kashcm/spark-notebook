@@ -4,7 +4,11 @@
  
 
 
-## How to run the application
+## How to run it
+
+```
+$ docker run 
+```
 
 ### prerequisities
 
