@@ -22,18 +22,27 @@ CMD ["/spark/startSpark.sh"]
 
 RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
     libglib2.0-0 libxext6 libsm6 libxrender1 \
-    git mercurial subversion
+    git mercurial subversion \
+    python3.4 \
+    python3-pip
 
-RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/archive/Anaconda3-4.0.0-Linux-x86_64.sh -O ~/anaconda.sh && \
-    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh
+RUN pip3 install --upgrade pip
 
-ENV PATH /opt/conda/bin:$PATH
+RUN pip3 install jupyter
+
+# RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
+#     wget --quiet https://repo.continuum.io/archive/Anaconda3-4.0.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+#     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+#     rm ~/anaconda.sh
+
+# ENV PATH /opt/conda/bin:$PATH
+
 
 WORKDIR /root/.local/share/jupyter/kernels
 RUN mkdir pyspark
 ADD pyspark ./pyspark
+
+RUN pip3 install --upgrade jupyterthemes && jt -t oceans16 -f roboto -fs 13 -nfs 13 -T -N
 
 WORKDIR /work
 
